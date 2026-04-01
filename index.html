@@ -353,7 +353,12 @@
                                     I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
                                 </p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
-                                    <a href={`mailto:${DATA.personal.email}`} className="w-full sm:w-auto px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-3 shadow-2xl shadow-blue-600/20"><i data-lucide="mail"></i> Email Me</a>
+                                    <a 
+    href={"mailto:" + DATA.personal.email} 
+    className="w-full sm:w-auto px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-3 shadow-2xl shadow-blue-600/20"
+>
+    <i data-lucide="mail"></i> Email Me
+</a>
                                     <a href={`tel:${DATA.personal.phone}`} className="w-full sm:w-auto px-10 py-5 glass hover:bg-white/10 text-white font-black rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-3"><i data-lucide="phone"></i> {DATA.personal.phone}</a>
                                 </div>
                                 <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
