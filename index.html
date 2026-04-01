@@ -77,12 +77,12 @@
                 { degree: "Automobile Driver's License", school: "Department of Transportation", period: "2023", desc: "Licensed for operating passenger vehicles, ensuring mobility and flexibility.", icon: "car" }
             ],
             skills: [
-                { name: "Professional Skills", rating: 5, icon: "briefcase", desc: "Expertise in customer service, sales strategy, and real estate consulting." },
-                { name: "Technology Skills", rating: 5, icon: "cpu", desc: "Proficient in Google Gemini AI, MS Office, and digital media editing tools." },
-                { name: "Problem Solving", rating: 5, icon: "zap", desc: "Expertise in handling complex situations and finding efficient solutions." },
-                { name: "Time Management", rating: 4, icon: "clock", desc: "Highly organized with a strong ability to prioritize tasks and meet deadlines." },
-                { name: "Sales Skills", rating: 4, icon: "target", desc: "Proven track record in customer persuasion and real estate consulting." },
-                { name: "Teamwork", rating: 4, icon: "users", desc: "Effective collaborator with strong communication and interpersonal skills." }
+                { name: "Professional Skills", rating: 5, icon: "briefcase", color: "#3b82f6", desc: "Expertise in customer service, sales strategy, and real estate consulting." },
+                { name: "Technology Skills", rating: 5, icon: "cpu", color: "#10b981", desc: "Proficient in Google Gemini AI, MS Office, and digital media editing tools." },
+                { name: "Problem Solving", rating: 5, icon: "zap", color: "#f59e0b", desc: "Expertise in handling complex situations and finding efficient solutions." },
+                { name: "Time Management", rating: 4, icon: "clock", color: "#8b5cf6", desc: "Highly organized with a strong ability to prioritize tasks and meet deadlines." },
+                { name: "Sales Skills", rating: 4, icon: "target", color: "#ef4444", desc: "Proven track record in customer persuasion and real estate consulting." },
+                { name: "Teamwork", rating: 4, icon: "users", color: "#ec4899", desc: "Effective collaborator with strong communication and interpersonal skills." }
             ],
             projects: [
                 { 
@@ -155,7 +155,7 @@
                                         {item}
                                     </button>
                                 ))}
-                                <a href={`mailto:${DATA.personal.email}`} className="px-5 py-2 bg-blue-600 rounded-full text-sm font-bold hover:bg-blue-700 transition-all">Resume</a>
+                                <button onClick={() => scrollTo('contact')} className="px-5 py-2 bg-blue-600 rounded-full text-sm font-bold hover:bg-blue-700 transition-all">Resume</button>
                             </div>
                             <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                 <i data-lucide={isMenuOpen ? "x" : "menu"}></i>
@@ -291,16 +291,37 @@
                             </div>
                             <div className="grid md:grid-cols-2 gap-8">
                                 {DATA.skills.map((skill, i) => (
-                                    <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-start sm:items-center hover:border-blue-500/30 transition-all">
-                                        <div className="w-16 h-16 rounded-2xl bg-blue-600/10 flex items-center justify-center text-blue-500 shrink-0"><i data-lucide={skill.icon} className="w-8 h-8"></i></div>
-                                        <div className="flex-1">
+                                    <motion.div 
+                                        key={i} 
+                                        initial={{ opacity: 0, y: 20 }} 
+                                        whileInView={{ opacity: 1, y: 0 }} 
+                                        viewport={{ once: true }} 
+                                        transition={{ delay: i * 0.1 }} 
+                                        className="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-start sm:items-center hover:border-white/20 transition-all group relative overflow-hidden"
+                                        style={{"--skill-color": skill.color}}
+                                    >
+                                        <div className="absolute inset-0 bg-[var(--skill-color)] opacity-0 group-hover:opacity-[0.03] transition-opacity"></div>
+                                        <div 
+                                            className="w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110"
+                                            style={{backgroundColor: `${skill.color}20`, color: skill.color}}
+                                        >
+                                            <i data-lucide={skill.icon} className="w-8 h-8"></i>
+                                        </div>
+                                        <div className="flex-1 z-10">
                                             <div className="flex justify-between items-center mb-3">
-                                                <h3 className="text-2xl font-bold">{skill.name}</h3>
+                                                <h3 className="text-2xl font-bold group-hover:text-white transition-colors">{skill.name}</h3>
                                                 <div className="flex gap-1">
-                                                    {[...Array(5)].map((_, sIdx) => <i key={sIdx} data-lucide="star" className={`w-4 h-4 ${sIdx < skill.rating ? 'fill-blue-500 text-blue-500' : 'text-gray-700'}`}></i>)}
+                                                    {[...Array(5)].map((_, sIdx) => (
+                                                        <i 
+                                                            key={sIdx} 
+                                                            data-lucide="star" 
+                                                            className={`w-4 h-4 ${sIdx < skill.rating ? '' : 'opacity-20'}`}
+                                                            style={{fill: sIdx < skill.rating ? skill.color : 'transparent', color: sIdx < skill.rating ? skill.color : 'gray'}}
+                                                        ></i>
+                                                    ))}
                                                 </div>
                                             </div>
-                                            <p className="text-gray-400 leading-relaxed">{skill.desc}</p>
+                                            <p className="text-gray-400 leading-relaxed group-hover:text-gray-300">{skill.desc}</p>
                                         </div>
                                     </motion.div>
                                 ))}
@@ -354,11 +375,11 @@
                                 </p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
                                     <a 
-    href={"mailto:" + DATA.personal.email} 
-    className="w-full sm:w-auto px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-3 shadow-2xl shadow-blue-600/20"
->
-    <i data-lucide="mail"></i> Email Me
-</a>
+                                        href={"mailto:" + DATA.personal.email} 
+                                        className="w-full sm:w-auto px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-3 shadow-2xl shadow-blue-600/20"
+                                    >
+                                        <i data-lucide="mail"></i> Email Me
+                                    </a>
                                     <a href={`tel:${DATA.personal.phone}`} className="w-full sm:w-auto px-10 py-5 glass hover:bg-white/10 text-white font-black rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-3"><i data-lucide="phone"></i> {DATA.personal.phone}</a>
                                 </div>
                                 <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
