@@ -77,11 +77,11 @@
                 { degree: "Automobile Driver's License", school: "Department of Transportation", period: "2023", desc: "Licensed for operating passenger vehicles, ensuring mobility and flexibility.", icon: "car" }
             ],
             skills: [
-                { name: "Professional Skills", rating: 5, icon: "briefcase", color: "#3b82f6", desc: "Expertise in customer service, sales strategy, and real estate consulting." },
                 { name: "Technology Skills", rating: 5, icon: "cpu", color: "#10b981", desc: "Proficient in Google Gemini AI, MS Office, and digital media editing tools." },
-                { name: "Problem Solving", rating: 5, icon: "zap", color: "#f59e0b", desc: "Expertise in handling complex situations and finding efficient solutions." },
+                { name: "Professional Skills", rating: 4, icon: "briefcase", color: "#3b82f6", desc: "Expertise in technical service, sales strategy." },
+                { name: "Problem Solving", rating: 4, icon: "zap", color: "#f59e0b", desc: "Expertise in handling complex situations and finding efficient solutions." },
                 { name: "Time Management", rating: 4, icon: "clock", color: "#8b5cf6", desc: "Highly organized with a strong ability to prioritize tasks and meet deadlines." },
-                { name: "Sales Skills", rating: 4, icon: "target", color: "#ef4444", desc: "Proven track record in customer persuasion and real estate consulting." },
+                { name: "Sales Skills", rating: 4, icon: "target", color: "#ef4444", desc: "Proven track record in customer persuasion." },
                 { name: "Teamwork", rating: 4, icon: "users", color: "#ec4899", desc: "Effective collaborator with strong communication and interpersonal skills." }
             ],
             projects: [
@@ -129,7 +129,9 @@
             const [activeSection, setActiveSection] = useState('home');
 
             useEffect(() => { 
-                if (window.lucide) lucide.createIcons(); 
+                const initIcons = () => { if (window.lucide) lucide.createIcons(); };
+                initIcons();
+                setTimeout(initIcons, 500);
                 
                 const handleScroll = () => {
                     const sections = ['home', 'about', 'experience', 'skills', 'projects', 'contact'];
@@ -255,13 +257,16 @@
                         </div>
                     </section>
 
-                    {/* Experience */}
+                    {/* Experience & Education */}
                     <section id="experience" className="py-32">
                         <div className="max-w-7xl mx-auto px-6">
-                            <div className="grid lg:grid-cols-2 gap-20">
+                            <div className="grid lg:grid-cols-2 gap-20 relative">
+                                {/* Vertical Divider Line */}
+                                <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/90 to-transparent -translate-x-1/2"></div>
+                                
                                 <div>
                                     <h2 className="text-4xl font-bold mb-16 flex items-center gap-4"><i data-lucide="briefcase" className="text-blue-500"></i> Experience</h2>
-                                    <div className="space-y-12 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-[2px] before:bg-white/10">
+                                    <div className="space-y-12 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-[2px] before:bg-white/80">
                                         {DATA.experience.map((exp, i) => (
                                             <motion.div key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="relative pl-12">
                                                 <div className="absolute left-0 top-1 w-10 h-10 rounded-full bg-[#0a0a0a] border-2 border-blue-600 flex items-center justify-center z-10">
@@ -401,19 +406,16 @@
                                     <a href={`tel:${DATA.personal.phone}`} className="w-full sm:w-auto px-10 py-5 glass hover:bg-white/10 text-white font-black rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-3"><i data-lucide="phone"></i> {DATA.personal.phone}</a>
                                 </div>
                                 
-                                {/* Footer với Icon Mạng Xã Hội */}
                                 <div className="pt-16 border-t border-white/5 flex flex-col items-center gap-6">
                                     <p className="text-gray-500 font-medium">© 2026 {DATA.personal.name}. Built with React & Tailwind.</p>
                                     
                                     <div className="flex gap-8">
-                                        {/* Facebook */}
                                         <a href="https://www.facebook.com/share/1AmTzrnCax/?mibextid=wwXIfr" target="_blank" className="text-gray-500 hover:text-blue-500 transition-all transform hover:scale-125">
                                             <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
                                                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                             </svg>
                                         </a>
                                         
-                                        {/* Instagram */}
                                         <a href="https://www.instagram.com/dusk_2608?igsh=NmVtcjUxc25iZjRp&utm_source=qr" target="_blank" className="text-gray-500 hover:text-pink-500 transition-all transform hover:scale-125">
                                             <svg className="w-6 h-6 fill-none stroke-current stroke-2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -422,7 +424,6 @@
                                             </svg>
                                         </a>
                                         
-                                        {/* TikTok */}
                                         <a href="https://www.tiktok.com/@dusk2608?_r=1&_t=ZS-95Al2sM4k7h" target="_blank" className="text-gray-500 hover:text-white transition-all transform hover:scale-125">
                                             <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
                                                 <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.31-.75.42-1.24 1.25-1.33 2.1-.1.7.1 1.41.53 1.96.44.53 1.11.88 1.79.94.7.05 1.41-.11 2.01-.47.63-.38 1.05-1.03 1.15-1.76.08-2.39.03-4.78.04-7.17v-9.49z"></path>
