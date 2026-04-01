@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HUY HOÀNG | Professional Portfolio</title>
-    <!-- Thư viện chuẩn (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -60,7 +59,8 @@
                 location: "Ha Noi City, VN",
                 phone: "0372126804",
                 email: "Dusk2608@gmail.com",
-                about: "In a constantly evolving technological world, I define myself as a lifelong learner. Quickly mastering new technologies and integrating them with business logic allows me to consistently finc the most effective approach for every project. I value accuracy, professionalism, and always strive to exceed expectations in every task assigned to me.",
+                tagline: "I am a dynamic, responsible individual with exceptional technical and technological expertise. My ability to quickly grasp technical specifications and features allows me to effectively advise and support clients in solving real-world problems. I always combine business acumen with logical thinking to optimize my work, ensuring the most accurate and professional service experience.",
+                about: "In a constantly evolving technological world, I define myself as a lifelong learner. Quickly mastering new technologies and integrating them with business logic allows me to consistently find the most effective approach for every project.",
                 avatar: "avatar.jpg"
             },
             experience: [
@@ -107,7 +107,7 @@
                     title: "AI Integration System", 
                     tech: ["Gemini AI", "Automation", "Logic"], 
                     desc: "Engineered an AI-powered assistant using Google Gemini to automate customer inquiries and optimize technical support response times.",
-                    img: "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/IO24_WhatsInAName_SocialShare_S96SOzG.width-1300.png"
+                    img: "https://picsum.photos/seed/ai-tech/600/400"
                 },
                 { 
                     title: "Web Portfolio Architecture", 
@@ -205,7 +205,7 @@
                                 Dynamic Professional <br/> Focused on Excellence
                             </h1>
                             <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-400 mb-10 leading-relaxed">
-                                I'm <span className="text-white font-semibold">{DATA.personal.name}</span>, {DATA.personal.about}
+                                I'm <span className="text-white font-semibold">{DATA.personal.name}</span>, {DATA.personal.tagline}
                             </p>
                             <div className="flex flex-wrap justify-center gap-4">
                                 <button onClick={() => scrollTo('projects')} className="px-10 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all flex items-center gap-2">View My Work <i data-lucide="chevron-right" className="w-4 h-4"></i></button>
