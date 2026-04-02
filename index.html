@@ -71,7 +71,7 @@
                 { role: "Coffee Shop Staff", company: "Local Coffee Shop", period: "2021", desc: "Provided excellent customer service and maintained shop operations in a fast-paced environment.", skills: ["Customer Relations", "Operations", "Teamwork"] }
             ],
             education: [
-                { degree: "Bachelor of Business Administration", school: "University of Economics & Business", period: "2022 - 2026", desc: "Graduated with an Excellent degree. Focused on strategic management, marketing, and business operations.", icon: "graduation-cap" },
+                { degree: "Bachelor of Business Administration", school: "Dai Nam University", period: "2022 - 2026", desc: "Graduated with an Excellent degree. Focused on strategic management, marketing, and business operations.", icon: "graduation-cap" },
                 { degree: "Google Gemini AI Professional Certification", school: "Google Certification", period: "2026", desc: "Advanced certification in leveraging Google Gemini AI models for business productivity.", icon: "award" },
                 { degree: "Microsoft Office Specialist", school: "Information Technology Center", period: "2022 - 2023", desc: "Proficient in advanced Excel, Word, and PowerPoint for professional business documentation.", icon: "cpu" },
                 { degree: "Automobile Driver's License", school: "Department of Transportation", period: "2023", desc: "Licensed for operating passenger vehicles, ensuring mobility and flexibility.", icon: "car" }
@@ -234,7 +234,7 @@
                                         </div>
                                         <div className="flex items-center gap-4">
                                             <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-blue-500"><i data-lucide="graduation-cap"></i></div>
-                                            <div><p className="text-xs font-bold text-gray-500 uppercase">Education</p><p className="text-white font-medium">Business Admin</p></div>
+                                            <div><p className="text-xs font-bold text-gray-500 uppercase">Education & Certification</p><p className="text-white font-medium">Business Admin</p></div>
                                         </div>
                                         <div className="flex items-center gap-4">
                                             <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-blue-500"><i data-lucide="mail"></i></div>
@@ -257,7 +257,7 @@
                         </div>
                     </section>
 
-                    {/* Experience & Education */}
+                    {/* Experience & Education & Certification */}
                     <section id="experience" className="py-32">
                         <div className="max-w-7xl mx-auto px-6">
                             <div className="grid lg:grid-cols-2 gap-20 relative">
@@ -288,7 +288,7 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <h2 className="text-4xl font-bold mb-16 flex items-center gap-4"><i data-lucide="graduation-cap" className="text-blue-500"></i> Education</h2>
+                                    <h2 className="text-4xl font-bold mb-16 flex items-center gap-4"><i data-lucide="graduation-cap" className="text-blue-500"></i> Education & Certification</h2>
                                     <div className="space-y-8">
                                         {DATA.education.map((edu, i) => (
                                             <motion.div key={i} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="p-8 rounded-3xl glass relative overflow-hidden group hover:border-blue-500/30 transition-all">
