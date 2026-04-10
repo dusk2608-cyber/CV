@@ -11,6 +11,9 @@
     <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <style>
         :root {
@@ -35,6 +38,12 @@
         
         /* Chống giật khi load */
         #root:empty { display: none; }
+
+        /* Hide elements from PDF */
+        .no-pdf { display: block; }
+
+        /* Fix cho html2canvas khi xuất PDF */
+        .pdf-export-mode .glass { background: rgba(255,255,255,0.05) !important; backdrop-filter: none !important; }
     </style>
 </head>
 <body>
@@ -48,7 +57,7 @@
     <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState, useEffect, useRef } = React;
         const { motion, AnimatePresence } = window.framerMotion || { motion: { div: 'div' }, AnimatePresence: ({children}) => children };
 
         // --- DỮ LIỆU ĐẦY ĐỦ ---
@@ -61,7 +70,7 @@
                 email: "Dusk2608@gmail.com",
                 tagline: "I am a dynamic, responsible individual with exceptional technical and technological expertise. My ability to quickly grasp technical specifications and features allows me to effectively advise and support clients in solving real-world problems. I always combine business acumen with logical thinking to optimize my work, ensuring the most accurate and professional service experience.",
                 about: "In a constantly evolving technological world, I define myself as a lifelong learner. Quickly mastering new technologies and integrating them with business logic allows me to consistently find the most effective approach for every project. I value accuracy, professionalism, and always strive to exceed expectations in every task assigned to me.",
-                avatar: "avatar.jpg"
+                avatar: "https://dusk2608-cyber.github.io/CV/avatar.jpg"
             },
             experience: [
                 { role: "Video Ads Editor & Creator", company: "Digital Media Agency", period: "2026 - Present", desc: "Crafting high-impact video advertisements and engaging short-form content for various digital platforms.", skills: ["Video Editing", "Short-form Content", "Visual Storytelling"] },
@@ -89,37 +98,37 @@
                     title: "Video Ads Campaign 2026", 
                     tech: ["Video Editing", "Short-form Content", "Visual Storytelling"], 
                     desc: "Developed high-impact video advertisements and short-form content for digital media platforms, focusing on visual storytelling and audience engagement.",
-                    img: "https://res.cloudinary.com/dn1j6dpd7/image/fetch/c_fill,f_auto,q_auto,w_1688/https://partners-blog-cms.livechat.com/app/uploads/2021/03/video-ad-format-thmub.jpg" 
+                    img: "https://www.bing.com/th/id/OIP.wjTvP0cl2Nf_G-H9N3N4bAHaEE?w=193&h=135&c=8&rs=1&qlt=70&pcl=292827&o=6&pid=3.1&rm=2" 
                 },
                 { 
                     title: "Operational Efficiency", 
                     tech: ["Strategy", "Process", "Management"], 
                     desc: "Optimized internal workflows and strategic planning to enhance overall operational performance and team productivity BYTECH.",
-                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs6ELKFaQPUG7V48OgMXhcNxbVwOKN0Ckqlg&s" 
+                    img: "https://www.bing.com/th/id/OIP.Z26lKxVem_mMJCOrPdlSiQHaHM?w=193&h=188&c=8&rs=1&qlt=70&pcl=292827&o=6&pid=3.1&rm=2" 
                 },
                 { 
                     title: "Mobile Tech Support", 
                     tech: ["Technical", "Mobile", "Solving"], 
                     desc: "Provided comprehensive technical assistance and troubleshooting for mobile devices, ensuring high user satisfaction.",
-                    img: "https://cdn.tgdd.vn/Files/2023/05/17/1530292/1-180523-114510.jpg"
+                    img: "https://th.bing.com/th/id/OIP.JWDCJ9-wgxsoEIe_Pb_JkgHaEI?w=312&h=180&c=7&r=0&o=7&pid=1.7&rm=3"
                 },
                 { 
                     title: "AI Integration System", 
                     tech: ["Gemini AI", "Automation", "Logic"], 
                     desc: "Engineered an AI-powered assistant using Google Gemini to automate customer inquiries and optimize technical support response times.",
-                    img: "https://storage.googleapis.com/gweb-uniblog-publish-prod/images/IO24_WhatsInAName_SocialShare_S96SOzG.width-1300.png"
+                    img: "https://www.bing.com/th/id/OIP.YXurlu7zk17UUznEZ3lVowHaEK?w=194&h=135&c=8&rs=1&qlt=70&pcl=292827&o=6&pid=3.1&rm=2"
                 },
                 { 
                     title: "Web Portfolio Architecture", 
                     tech: ["React JS", "Tailwind CSS", "Framer Motion"], 
                     desc: "Developed a high-performance, responsive web portfolio featuring advanced animations and optimized asset loading for professional branding.",
-                    img: "https://i.pinimg.com/736x/f5/e9/af/f5e9af9bf8ebe119cc369da33aa48e40.jpg"
+                    img: "https://www.bing.com/th/id/OIP.Ky5b72OdUCp5EwTOjf2t8wHaGE?w=193&h=158&c=8&rs=1&qlt=70&pcl=292827&o=6&pid=3.1&rm=2"
                 },
                 { 
                     title: "Personal Tech Optimization", 
                     tech: ["Hardware", "Software", "Efficiency"], 
                     desc: "Tailored technology setups for individuals, optimizing hardware performance and software workflows to maximize personal productivity and digital security.",
-                    img: "https://tinhanhsetup.vn/wp-content/uploads/setup-goc-lam-viec-tao-nen-khong-gian-sang-tao-va-hieu-qua-66dc164e2442b.webp"
+                    img: "https://www.bing.com/th/id/OIP.ZSwlOhOHkTGw8J5FhaOjowHaE7?w=193&h=135&c=8&rs=1&qlt=70&pcl=292827&o=6&pid=3.1&rm=2"
                 }
             ]
         };
@@ -127,6 +136,8 @@
         function App() {
             const [isMenuOpen, setIsMenuOpen] = useState(false);
             const [activeSection, setActiveSection] = useState('home');
+            const [isDownloading, setIsDownloading] = useState(false);
+            const portfolioRef = useRef(null);
 
             useEffect(() => { 
                 const initIcons = () => { if (window.lucide) lucide.createIcons(); };
@@ -154,10 +165,71 @@
                 setIsMenuOpen(false);
             };
 
+            const downloadPDF = async () => {
+                if (!portfolioRef.current) return;
+                setIsDownloading(true);
+
+                try {
+                    const { jsPDF } = window.jspdf;
+                    const element = portfolioRef.current;
+                    
+                    // Hide elements from PDF
+                    const noPdfElements = element.querySelectorAll('.no-pdf');
+                    noPdfElements.forEach(el => el.style.display = 'none');
+                    element.classList.add('pdf-export-mode');
+
+                    const canvas = await html2canvas(element, {
+                        scale: 2,
+                        useCORS: true,
+                        backgroundColor: '#0a0a0a',
+                        windowWidth: element.scrollWidth,
+                        windowHeight: element.scrollHeight,
+                        onclone: (clonedDoc) => {
+                            const clonedRoot = clonedDoc.getElementById('root');
+                            if (clonedRoot) clonedRoot.style.background = '#0a0a0a';
+                        }
+                    });
+
+                    // Restore elements
+                    noPdfElements.forEach(el => el.style.display = '');
+                    element.classList.remove('pdf-export-mode');
+
+                    const imgData = canvas.toDataURL('image/jpeg', 0.95);
+                    const pdf = new jsPDF('p', 'mm', 'a4');
+                    
+                    const imgProps = pdf.getImageProperties(imgData);
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = pdf.internal.pageSize.getHeight();
+                    
+                    // Tính toán tỷ lệ chuẩn để ảnh không bị méo
+                    const renderWidth = pdfWidth;
+                    const renderHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                    
+                    let heightLeft = renderHeight;
+                    let position = 0;
+
+                    pdf.addImage(imgData, 'JPEG', 0, position, renderWidth, renderHeight);
+                    heightLeft -= pdfHeight;
+
+                    while (heightLeft > 0) {
+                        position = heightLeft - renderHeight;
+                        pdf.addPage();
+                        pdf.addImage(imgData, 'JPEG', 0, position, renderWidth, renderHeight);
+                        heightLeft -= pdfHeight;
+                    }
+
+                    pdf.save(`${DATA.personal.name.replace(/\s+/g, '_')}_Portfolio.pdf`);
+                } catch (error) {
+                    console.error('Error generating PDF:', error);
+                } finally {
+                    setIsDownloading(false);
+                }
+            };
+
             return (
-                <div className="min-h-screen">
+                <div className="min-h-screen" ref={portfolioRef}>
                     {/* Navigation */}
-                    <nav className="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 py-4">
+                    <nav className="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 py-4 no-pdf">
                         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                             <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollTo('home')}>
                                 <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
@@ -175,7 +247,14 @@
                                         {item}
                                     </button>
                                 ))}
-                                <button onClick={() => scrollTo('contact')} className="px-5 py-2 bg-blue-600 rounded-full text-sm font-bold hover:bg-blue-700 transition-all">Resume</button>
+                                <button 
+                                    onClick={downloadPDF} 
+                                    disabled={isDownloading}
+                                    className="px-5 py-2 bg-blue-600 rounded-full text-sm font-bold hover:bg-blue-700 transition-all flex items-center gap-2 disabled:opacity-50"
+                                >
+                                    {isDownloading ? <i data-lucide="loader-2" className="w-4 h-4 animate-spin"></i> : <i data-lucide="download" className="w-4 h-4"></i>}
+                                    {isDownloading ? 'Generating...' : 'Download PDF'}
+                                </button>
                             </div>
                             <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
                                 <i data-lucide={isMenuOpen ? "x" : "menu"}></i>
@@ -188,6 +267,12 @@
                                     {['About', 'Experience', 'Skills', 'Projects', 'Contact'].map(item => (
                                         <button key={item} onClick={() => scrollTo(item.toLowerCase())} className="text-left text-lg font-medium text-gray-400 hover:text-white">{item}</button>
                                     ))}
+                                    <button 
+                                        onClick={downloadPDF} 
+                                        className="w-full mt-4 px-5 py-3 bg-blue-600 rounded-xl text-center font-bold flex items-center justify-center gap-2"
+                                    >
+                                        <i data-lucide="download" className="w-4 h-4"></i> Download PDF
+                                    </button>
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -207,7 +292,7 @@
                             <p className="max-w-2xl mx-auto text-lg md:text-xl text-gray-400 mb-10 leading-relaxed">
                                 I'm <span className="text-white font-semibold">{DATA.personal.name}</span>, {DATA.personal.tagline}
                             </p>
-                            <div className="flex flex-wrap justify-center gap-4">
+                            <div className="flex flex-wrap justify-center gap-4 no-pdf">
                                 <button onClick={() => scrollTo('projects')} className="px-10 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-all flex items-center gap-2">View My Work <i data-lucide="chevron-right" className="w-4 h-4"></i></button>
                                 <button onClick={() => scrollTo('contact')} className="px-10 py-4 glass text-white font-bold rounded-full hover:bg-white/10 transition-all">Contact Me</button>
                             </div>
@@ -234,7 +319,7 @@
                                         </div>
                                         <div className="flex items-center gap-4">
                                             <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-blue-500"><i data-lucide="graduation-cap"></i></div>
-                                            <div><p className="text-xs font-bold text-gray-500 uppercase">Education & Certification</p><p className="text-white font-medium">Business Admin</p></div>
+                                            <div><p className="text-xs font-bold text-gray-500 uppercase">Education</p><p className="text-white font-medium">Business Admin</p></div>
                                         </div>
                                         <div className="flex items-center gap-4">
                                             <div className="w-12 h-12 rounded-xl glass flex items-center justify-center text-blue-500"><i data-lucide="mail"></i></div>
@@ -289,7 +374,7 @@
 
                                 {/* Education Column */}
                                 <div>
-                                    <h2 className="text-4xl font-bold mb-16 flex items-center gap-4"><i data-lucide="graduation-cap" className="text-blue-500"></i> Education & Certification</h2>
+                                    <h2 className="text-4xl font-bold mb-16 flex items-center gap-4"><i data-lucide="graduation-cap" className="text-blue-500"></i> Education</h2>
                                     <div className="space-y-12 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-[2px] before:bg-white/80">
                                         {DATA.education.map((edu, i) => (
                                             <motion.div key={i} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }} className="relative pl-12">
@@ -334,9 +419,7 @@
                                         viewport={{ once: true }} 
                                         transition={{ delay: i * 0.1 }} 
                                         className="p-8 rounded-3xl glass flex flex-col sm:flex-row gap-8 items-start sm:items-center hover:border-white/20 transition-all group relative overflow-hidden"
-                                        style={{"--skill-color": skill.color}}
                                     >
-                                        <div className="absolute inset-0 bg-[var(--skill-color)] opacity-0 group-hover:opacity-[0.03] transition-opacity"></div>
                                         <div 
                                             className="w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-110"
                                             style={{backgroundColor: `${skill.color}20`, color: skill.color}}
@@ -409,7 +492,7 @@
                                 <p className="text-gray-400 text-xl mb-12 leading-relaxed">
                                     I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
                                 </p>
-                                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20">
+                                <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-20 no-pdf">
                                     <a 
                                         href={"mailto:" + DATA.personal.email} 
                                         className="w-full sm:w-auto px-10 py-5 bg-blue-600 hover:bg-blue-700 text-white font-black rounded-full transition-all transform hover:scale-105 flex items-center justify-center gap-3 shadow-2xl shadow-blue-600/20"
@@ -422,13 +505,13 @@
                                 <div className="pt-16 border-t border-white/5 flex flex-col items-center gap-6">
                                     <p className="text-gray-500 font-medium">© 2026 {DATA.personal.name}. Built with React & Tailwind.</p>
                                     
-                                    <div className="flex gap-8">
+                                    <div className="flex gap-8 no-pdf">
                                         <a href="https://www.facebook.com/share/1AmTzrnCax/?mibextid=wwXIfr" target="_blank" className="text-gray-500 hover:text-blue-500 transition-all transform hover:scale-125">
                                             <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
                                                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                                             </svg>
                                         </a>
-                                        <a href="https://www.instagram.com/dusk_2608?igsh=NmVtcjUxc25iZjRp&utm_source=qr" target="_blank" className="text-gray-500 hover:text-pink-500 transition-all transform hover:scale-125">
+                                        <a href="https://www.instagram.com/dusk_2608?igsh=NmVtcjUxc25iZjRp&utm_source=qr" target="_blank" className="text-gray-500 hover: pink-500 transition-all transform hover:scale-125">
                                             <svg className="w-6 h-6 fill-none stroke-current stroke-2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">
                                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
